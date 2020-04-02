@@ -33,6 +33,6 @@ spices_check_coord = np.array([600,355])
 dairy_check_coord = np.array([600,218])
 drinks_check_coord = np.array([600,85])
 
-# Cutomer
+# Customer
 vv = [0,0]
 yx = [0,0]
