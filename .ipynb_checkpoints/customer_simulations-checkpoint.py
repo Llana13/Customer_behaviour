@@ -107,6 +107,18 @@ total = dairy1+drinks1+spices1+fruit1
 first_location_prob = pd.DataFrame(data={'dairy':[dairy1/total],'drinks':[drinks1/total],'fruit':[fruit1/total],'spices':[spices1/total]})
 
 ### Function definition for simulation functions ###
+def set_loc(first_move):
+    '''
+    Set loc variable to the location where the customer is
+    '''
+    if first_move == 'd':
+        x = 'dairy'
+    elif first_move == 'r':
+        x = 'drinks'
+    elif first_move == 's':
+        x = 'spices'
+    else: x = 'fruit'
+    return x
 
 def location_prob_list(loc):
     ''''
@@ -115,7 +127,7 @@ def location_prob_list(loc):
     move_prob_list = int(prob_matrix[loc][0]*100)*'d'+int(prob_matrix[loc][1]*100)*'s'+int(prob_matrix[loc][2]*100)*'r'+int(prob_matrix[loc][3]*100)*'f'+int(prob_matrix[loc][4]*100)*'c'
     return move_prob_list
 
-def set_loc(move):
+def set_loc_c(move):
     ''''
     Set loc variable to the location where the customer is but including 'checkout'
     '''
@@ -130,21 +142,52 @@ def set_loc(move):
     else: x = 'checkout'
     return x
 
-# list of location * its probability for the first location
-first_location_prob_list = int(first_location_prob['dairy']*100)*'d'+int(first_location_prob['drinks']*100)*'r'+int(first_location_prob['fruit']*100)*'f'+int(first_location_prob['spices']*100)*'s'
-
 def full_simulation():
     '''
     Simulates a customer behaviour in the supermarket
     '''
+    # list of location*its probability for the first location
+    first_location_prob_list = int(first_location_prob['dairy']*100)*'d'+int(first_location_prob['drinks']*100)*'r'+int(first_location_prob['fruit']*100)*'f'+int(first_location_prob['spices']*100)*'s'
+
     # randomly choose from the list of locations
     first_move = random.choice(first_location_prob_list)
 
     loc = set_loc(first_move)
-    locations = []
-    locations.append(loc)
+
     while loc != 'checkout':
+
+        print('Customer is in: ',loc)
         move_prob_list = location_prob_list(loc)
         move = random.choice(move_prob_list)
-        loc = set_loc(move)
-    return locations
+        loc = set_loc_c(move)
+        # Time each customer spends on each section
+        if loc == 'dairy':
+            time.sleep(1)
+        elif loc == 'spices':
+            time.sleep(2)
+        elif loc == 'drinks':
+            time.sleep(3)
+        else: time.sleep(4)
+    else: print('Customer left')
+
+def part_simulation(first_location):
+    '''
+    Simulates a customer behaviour in the supermarket given a first location
+    '''
+    #print('First location is: ',first_location)
+    loc = first_location
+    while loc != 'checkout':
+
+        print('Customer is in: ',loc)
+        move_prob_list = location_prob_list(first_location)
+        move = random.choice(move_prob_list)
+        loc = set_loc_c(move)
+        # Time each customer spends on each section
+        if loc == 'dairy':
+            time.sleep(1)
+        elif loc == 'spices':
+            time.sleep(2)
+        elif loc == 'drinks':
+            time.sleep(3)
+        else: time.sleep(4)
+    else: print('Customer left')

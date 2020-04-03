@@ -7,11 +7,11 @@ Coordinates of the locations and the related places
 # Supermarket dimensions = (675, 943, 3)
 
 # Locations:
-entrance_coord = np.array([600,770])
-fruit_coord = np.array([250,770])
-spices_coord = np.array([250,550])
-dairy_coord = np.array([250,315])
-drinks_coord = np.array([250,85])
+entrance = np.array([600,770])
+fruit = np.array([250,770])
+spices = np.array([250,550])
+dairy = np.array([250,315])
+drinks = np.array([250,85])
 
 # Upper aisle
 fruit_up_coord = np.array([60,770])
@@ -28,10 +28,11 @@ dairy_check_up_coord = np.array([450,218])
 spices_check_up_coord = np.array([450,355])
 
 # Checkouts
-fruit_check_coord = np.array([600,500])
-spices_check_coord = np.array([600,355])
-dairy_check_coord = np.array([600,218])
-drinks_check_coord = np.array([600,85])
+fruit_check = np.array([600,500])
+spices_check = np.array([600,355])
+dairy_check = np.array([600,218])
+drinks_check = np.array([600,85])
+checkout = 0
 
 # Customer
 vv = [0,0]
