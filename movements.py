@@ -4,27 +4,33 @@ from classes import Supermarket, Customer
 def move_to(customer, supermarket, target_y, target_x):
 
     # up
-    if target_y < customer.yx[0] and target_x is customer.yx[1]:
-        while customer.yx[0] > target_y:
-            customer.vv[0] = -1
+    if target_y < customer.y and target_x is customer.x:
+        print('going up')
+        while not customer.y == target_y:
+            customer.vy = -10
+            customer.vx = 0
             supermarket.draw()
             supermarket.render()
             customer.move()
             if cv2.waitKey(0) == ord('q'):
                 break
     # down
-    elif target_y > customer.yx[0] and target_x is customer.yx[1]:
-        while customer.yx[0] < target_y:
-            customer.vv[0] = 1
+    elif target_y > customer.y and target_x is customer.x:
+        print('going down')
+        while customer.y < target_y:
+            customer.vy = 10
+            customer.vx= 0
             supermarket.draw()
             supermarket.render()
             customer.move()
             if cv2.waitKey(0) == ord('q'):
                 break
     # left
-    elif target_x < customer.yx[1] and target_y is customer.yx[0]:
-        while customer.yx[1] > target_x:
-            customer.vv[1] = -1
+    elif target_x < customer.x and target_y is customer.y:
+        print('going left')
+        while customer.x > target_x:
+            customer.vx = -10
+            customer.vy = 0
             supermarket.draw()
             supermarket.render()
             customer.move()
@@ -32,8 +38,10 @@ def move_to(customer, supermarket, target_y, target_x):
                 break
     # right
     else:
-        while customer.yx[1] < target_x:
-            customer.vv[1] = 1
+        print('going right')
+        while customer.x < target_x:
+            customer.vx = 10
+            customer.vy = 0
             supermarket.draw()
             supermarket.render()
             customer.move()
@@ -42,127 +50,145 @@ def move_to(customer, supermarket, target_y, target_x):
 
 # Start_Destination
 
-def entrance_fruit():
+def entrance_fruit(start_coord,vv):
     customer = Customer(start_coord, vv)
     supermarket = Supermarket([customer])
-    m.move_to(customer, supermarket, 250, customer.yx[1])
+    move_to(customer, supermarket, 250, customer.x) # e to fu
 
-def fruit_spices():
+def entrance_spices(start_coord,vv):
     customer = Customer(start_coord, vv)
     supermarket = Supermarket([customer])
-    move_to(customer, supermarket, 60, customer.yx[1]) # f to fu
-    move_to(customer, supermarket, customer.yx[0], 550) # fu to su
-    move_to(customer, supermarket, 250, customer.yx[1]) #  su to s
+    print('start y', customer.y)
+    print('start x', customer.x)
+    move_to(customer, supermarket, 60, customer.x) # e to fu
+    move_to(customer, supermarket, customer.y, 550) # fu to su
+    move_to(customer, supermarket, 250, customer.x) #  su to s
 
-def fruit_dairy():
+def entrance_dairy(start_coord,vv):
     customer = Customer(start_coord, vv)
     supermarket = Supermarket([customer])
-    move_to(customer, supermarket, 60, customer.yx[1]) # f to fu
-    move_to(customer, supermarket, customer.yx[0], 550) # fu to su
-    move_to(customer, supermarket, customer.yx[0], 315) # su to du
-    move_to(customer, supermarket, 250, customer.yx[1]) # du to d
+    move_to(customer, supermarket, 60, customer.x) # e to fu
+    move_to(customer, supermarket, customer.y, 315) # su to du
+    move_to(customer, supermarket, 250, customer.x) # du to d
 
-def fruit_drinks():
+def entrance_drinks(start_coord,vv):
     customer = Customer(start_coord, vv)
     supermarket = Supermarket([customer])
-    move_to(customer, supermarket, 60, customer.yx[1]) # f to fu
-    move_to(customer, supermarket, customer.yx[0], 550) # fu to su
-    move_to(customer, supermarket, customer.yx[0], 315) # su to du
-    move_to(customer, supermarket, customer.yx[0], 85) # du to ru
-    move_to(customer, supermarket, 85, customer.yx[1]) # ru to r
+    move_to(customer, supermarket, 60, customer.x) # e to fu
+    move_to(customer, supermarket, customer.y, 85) # fu to ru
+    move_to(customer, supermarket, 250, customer.x) # ru to r
 
-def spices_fruit():
+def fruit_spices(start_coord,vv):
     customer = Customer(start_coord, vv)
     supermarket = Supermarket([customer])
-    move_to(customer, supermarket, 60, customer.yx[1])# s to su
-    move_to(customer, supermarket, customer.yx[0], 770)# su to fu
-    move_to(customer, supermarket, 250, customer.yx[1])# fu to f
+    move_to(customer, supermarket, 60, customer.x) # f to fu
+    move_to(customer, supermarket, customer.y, 550) # fu to su
+    move_to(customer, supermarket, 250, customer.x) #  su to s
 
-def spices_dairy():
+def fruit_dairy(start_coord,vv):
     customer = Customer(start_coord, vv)
     supermarket = Supermarket([customer])
-    move_to(customer, supermarket, 60, customer.yx[1])# s to su
-    move_to(customer, supermarket, customer.yx[1], 315)# su to du
-    move_to(customer, supermarket, 250, customer.yx[1])# du to d
+    move_to(customer, supermarket, 60, customer.x) # f to fu
+    move_to(customer, supermarket, customer.y, 550) # fu to su
+    move_to(customer, supermarket, customer.y, 315) # su to du
+    move_to(customer, supermarket, 250, customer.x) # du to d
 
-def spices_drinks():
+def fruit_drinks(start_coord,vv):
     customer = Customer(start_coord, vv)
     supermarket = Supermarket([customer])
-    move_to(customer, supermarket, 60, customer.yx[1])# s to su
-    move_to(customer, supermarket, customer.yx[1], 315)# su to du
-    move_to(customer, supermarket, customer.yx[0], 85) # du to ru
-    move_to(customer, supermarket, 85, customer.yx[1]) # ru to r
+    move_to(customer, supermarket, 60, customer.x) # f to fu
+    move_to(customer, supermarket, customer.y, 550) # fu to su
+    move_to(customer, supermarket, customer.y, 315) # su to du
+    move_to(customer, supermarket, customer.y, 85) # du to ru
+    move_to(customer, supermarket, 250, customer.x) # ru to r
 
-def dairy_fruit():
+def spices_fruit(start_coord,vv):
     customer = Customer(start_coord, vv)
     supermarket = Supermarket([customer])
-    move_to(customer, supermarket, 60, customer.yx[1]) # d to du
-    move_to(customer, supermarket, customer.yx[1], 550) # du to su
-    move_to(customer, supermarket, customer.yx[0], 770)# su to fu
-    move_to(customer, supermarket, 250, customer.yx[1])# fu to f
+    move_to(customer, supermarket, 60, customer.x)# s to su
+    move_to(customer, supermarket, customer.y, 770)# su to fu
+    move_to(customer, supermarket, 250, customer.x)# fu to f
 
-def dairy_spices():
+def spices_dairy(start_coord,vv):
     customer = Customer(start_coord, vv)
     supermarket = Supermarket([customer])
-    move_to(customer, supermarket, 60, customer.yx[1]) # d to du
-    move_to(customer, supermarket, customer.yx[1], 550) # du to su
-    move_to(customer, supermarket, 250, customer.yx[1]) #  su to s
+    move_to(customer, supermarket, 60, customer.x)# s to su
+    move_to(customer, supermarket, customer.y, 315)# su to du
+    move_to(customer, supermarket, 250, customer.x)# du to d
 
-def dairy_drinks():
+def spices_drinks(start_coord,vv):
     customer = Customer(start_coord, vv)
     supermarket = Supermarket([customer])
-    move_to(customer, supermarket, 60, customer.yx[1]) # d to du
-    move_to(customer, supermarket, customer.yx[0], 85) # du to ru
-    move_to(customer, supermarket, 85, customer.yx[1]) # ru to
+    move_to(customer, supermarket, 60, customer.x)# s to su
+    move_to(customer, supermarket, customer.x, 315)# su to du
+    move_to(customer, supermarket, customer.y, 85) # du to ru
+    move_to(customer, supermarket, 250, customer.x) # ru to r
 
-def drinks_fruit():
+def dairy_fruit(start_coord,vv):
     customer = Customer(start_coord, vv)
     supermarket = Supermarket([customer])
-    move_to(customer, supermarket, 60, customer.yx[1]) # r to ru
-    move_to(customer, supermarket, 85, customer.yx[1]) # ru to su
-    move_to(customer, supermarket, 315, customer.yx[1]) # su to du
-    move_to(customer, supermarket, customer.yx[1], 550) # du to su
-    move_to(customer, supermarket, customer.yx[0], 770)# su to fu
-    move_to(customer, supermarket, 250, customer.yx[1])# fu to
+    move_to(customer, supermarket, 60, customer.x) # d to du
+    move_to(customer, supermarket, customer.x, 550) # du to su
+    move_to(customer, supermarket, customer.y, 770)# su to fu
+    move_to(customer, supermarket, 250, customer.x)# fu to f
 
-def drinks_spices():
+def dairy_spices(start_coord,vv):
     customer = Customer(start_coord, vv)
     supermarket = Supermarket([customer])
-    move_to(customer, supermarket, 60, customer.yx[1]) # r to ru
-    move_to(customer, supermarket, 85, customer.yx[1]) # ru to su
-    move_to(customer, supermarket, 315, customer.yx[1]) # su to du
-    move_to(customer, supermarket, customer.yx[1], 550) # du to su
-    move_to(customer, supermarket, 250, customer.yx[1]) # su to s
+    move_to(customer, supermarket, 60, customer.x) # d to du
+    move_to(customer, supermarket, customer.x, 550) # du to su
+    move_to(customer, supermarket, 250, customer.x) #  su to s
 
-def drinks_dairy():
+def dairy_drinks(start_coord,vv):
     customer = Customer(start_coord, vv)
     supermarket = Supermarket([customer])
-    move_to(customer, supermarket, 60, customer.yx[1])
-    move_to(customer, supermarket, 315, customer.yx[1])
-    move_to(customer, supermarket, 250, customer.yx[1])
+    move_to(customer, supermarket, 60, customer.x) # d to du
+    move_to(customer, supermarket, customer.y, 85) # du to ru
+    move_to(customer, supermarket, 250, customer.x) # ru to
 
-def fruit_checkout():
+def drinks_fruit(start_coord,vv):
     customer = Customer(start_coord, vv)
     supermarket = Supermarket([customer])
-    move_to(customer, supermarket, 450, customer.yx[1])
-    move_to(customer, supermarket, 500, customer.yx[1])
-    move_to(customer, supermarket, 600, customer.yx[1])
+    move_to(customer, supermarket, 60, customer.x) # r to ru
+    move_to(customer, supermarket, customer.y, 770)# ru to fu
+    move_to(customer, supermarket, 250, customer.x)# fu to
 
-def spices_checkout():
+def drinks_spices(start_coord,vv):
     customer = Customer(start_coord, vv)
     supermarket = Supermarket([customer])
-    move_to(customer, supermarket, 450, customer.yx[1])
-    move_to(customer, supermarket, 350, customer.yx[1])
-    move_to(customer, supermarket, 600, customer.yx[1])
+    move_to(customer, supermarket, 60, customer.x) # r to ru
+    move_to(customer, supermarket, customer.y, 550) # ru to su
+    move_to(customer, supermarket, 250, customer.x) # su to s
 
-def dairy_checkout():
+def drinks_dairy(start_coord,vv):
     customer = Customer(start_coord, vv)
     supermarket = Supermarket([customer])
-    move_to(customer, supermarket, 450, customer.yx[1])
-    move_to(customer, supermarket, customer.yx[0], 218)
-    move_to(customer, supermarket, 600, customer.yx[1])
+    move_to(customer, supermarket, 60, customer.x) # r to ru
+    move_to(customer, supermarket, customer.y, 315) # ru to du
+    move_to(customer, supermarket, 250, customer.x) # du to d
 
-def drinks_checkout():
+def fruit_checkout(start_coord,vv):
     customer = Customer(start_coord, vv)
     supermarket = Supermarket([customer])
-    move_to(customer, supermarket, 600, customer.yx[1])
+    move_to(customer, supermarket, 450, customer.x)
+    move_to(customer, supermarket, customer.y, 500)
+    move_to(customer, supermarket, 600, customer.x)
+
+def spices_checkout(start_coord,vv):
+    customer = Customer(start_coord, vv)
+    supermarket = Supermarket([customer])
+    move_to(customer, supermarket, 450, customer.x)
+    move_to(customer, supermarket, customer.y, 355)
+    move_to(customer, supermarket, 600, customer.x)
+
+def dairy_checkout(start_coord,vv):
+    customer = Customer(start_coord, vv)
+    supermarket = Supermarket([customer])
+    move_to(customer, supermarket, 450, customer.x)
+    move_to(customer, supermarket, customer.y, 218)
+    move_to(customer, supermarket, 600, customer.x)
+
+def drinks_checkout(start_coord,vv):
+    customer = Customer(start_coord, vv)
+    supermarket = Supermarket([customer])
+    move_to(customer, supermarket, 600, customer.x)
