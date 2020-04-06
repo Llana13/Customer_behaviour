@@ -2,10 +2,9 @@ import cv2
 from classes import Supermarket, Customer
 
 def move_to(customer, supermarket, target_y, target_x):
-
     # up
     if target_y < customer.y and target_x is customer.x:
-        print('going up')
+
         while not customer.y == target_y:
             customer.vy = -10
             customer.vx = 0
@@ -16,7 +15,7 @@ def move_to(customer, supermarket, target_y, target_x):
                 break
     # down
     elif target_y > customer.y and target_x is customer.x:
-        print('going down')
+
         while customer.y < target_y:
             customer.vy = 10
             customer.vx= 0
@@ -27,7 +26,7 @@ def move_to(customer, supermarket, target_y, target_x):
                 break
     # left
     elif target_x < customer.x and target_y is customer.y:
-        print('going left')
+
         while customer.x > target_x:
             customer.vx = -10
             customer.vy = 0
@@ -38,7 +37,7 @@ def move_to(customer, supermarket, target_y, target_x):
                 break
     # right
     else:
-        print('going right')
+
         while customer.x < target_x:
             customer.vx = 10
             customer.vy = 0
@@ -48,7 +47,7 @@ def move_to(customer, supermarket, target_y, target_x):
             if cv2.waitKey(0) == ord('q'):
                 break
 
-# Start_Destination
+# Functions naming: Start_Destination
 
 def entrance_fruit(start_coord,vv):
     customer = Customer(start_coord, vv)
@@ -58,8 +57,6 @@ def entrance_fruit(start_coord,vv):
 def entrance_spices(start_coord,vv):
     customer = Customer(start_coord, vv)
     supermarket = Supermarket([customer])
-    print('start y', customer.y)
-    print('start x', customer.x)
     move_to(customer, supermarket, 60, customer.x) # e to fu
     move_to(customer, supermarket, customer.y, 550) # fu to su
     move_to(customer, supermarket, 250, customer.x) #  su to s

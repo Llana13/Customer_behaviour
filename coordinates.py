@@ -33,7 +33,7 @@ spices_check = np.array([600,355])
 dairy_check = np.array([600,218])
 drinks_check = np.array([600,85])
 checkout = 0
-
+checkouts = [fruit_check, spices_check, dairy_check, drinks_check]
 # Customer
 vv = [0,0]
 yx = [0,0]

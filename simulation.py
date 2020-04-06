@@ -47,4 +47,6 @@ def full_simulation():
         move = random.choice(move_prob_list)
         loc = set_loc(move)
         locations.append(loc)
-    return locations
+    locations.insert(0, 'entrance')
+    locations[-1] = locations[-2] + '_check'
+    return pd.Series(locations)
