@@ -11,7 +11,7 @@ def move_to(customer, supermarket, target_y, target_x):
             supermarket.draw()
             supermarket.render()
             customer.move()
-            if cv2.waitKey(0) == ord('q'):
+            if cv2.waitKey(25) == ord('q'):
                 break
     # down
     elif target_y > customer.y and target_x is customer.x:
@@ -22,7 +22,7 @@ def move_to(customer, supermarket, target_y, target_x):
             supermarket.draw()
             supermarket.render()
             customer.move()
-            if cv2.waitKey(0) == ord('q'):
+            if cv2.waitKey(25) == ord('q'):
                 break
     # left
     elif target_x < customer.x and target_y is customer.y:
@@ -33,7 +33,7 @@ def move_to(customer, supermarket, target_y, target_x):
             supermarket.draw()
             supermarket.render()
             customer.move()
-            if cv2.waitKey(0) == ord('q'):
+            if cv2.waitKey(25) == ord('q'):
                 break
     # right
     else:
@@ -44,7 +44,7 @@ def move_to(customer, supermarket, target_y, target_x):
             supermarket.draw()
             supermarket.render()
             customer.move()
-            if cv2.waitKey(0) == ord('q'):
+            if cv2.waitKey(25) == ord('q'):
                 break
 
 # Functions naming: Start_Destination

@@ -33,7 +33,13 @@ spices_check = np.array([600,355])
 dairy_check = np.array([600,218])
 drinks_check = np.array([600,85])
 checkout = 0
-checkouts = [fruit_check, spices_check, dairy_check, drinks_check]
+checkouts = [np.array([600,500]), np.array([600,355]), np.array([600,218]), np.array([600,85])]
 # Customer
 vv = [0,0]
 yx = [0,0]
+
+def array_in_list(arr, list_arrays):
+    '''
+    Check if an array is in a list of arrays or not
+    '''
+    return next((True for elem in list_arrays if np.array_equal(elem, arr)), False)
