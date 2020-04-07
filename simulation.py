@@ -2,6 +2,11 @@ import random
 import pandas as pd
 import coordinates as co
 import movements as m
+from classes import *
+
+prob_matrix = pd.read_csv(r'data/prob_matrix.csv')
+first_location_prob = pd.read_csv(r'data/first_location_prob.csv')
+first_location_prob_list = int(first_location_prob['dairy']*100)*'d'+int(first_location_prob['drinks']*100)*'r'+int(first_location_prob['fruit']*100)*'f'+int(first_location_prob['spices']*100)*'s'
 
 def location_prob_list(loc):
     ''''
@@ -9,15 +14,6 @@ def location_prob_list(loc):
     '''
     move_prob_list = int(prob_matrix[loc][0]*100)*'d'+int(prob_matrix[loc][1]*100)*'s'+int(prob_matrix[loc][2]*100)*'r'+int(prob_matrix[loc][3]*100)*'f'+int(prob_matrix[loc][4]*100)*'c'
     return move_prob_list
-
-prob_matrix = pd.DataFrame(data={'dairy':[0, 0.195713, 0.223151, 0.189925, 0.391211],
-                   'spices':[0.323553, 0 ,0.273140, 0.152307, 0.251000],
-                   'drinks':[0.027159, 0.216756, 0 , 0.219062, 0.537023],
-                   'fruit':[0.238319, 0.125904, 0.136266, 0, 0.499511]}, index=['dairy', 'spices', 'drinks', 'fruit', 'checkout'])
-
-first_location_prob = pd.DataFrame(data={'dairy':[0.287576], 'drinks':[0.153526], 'fruit':[0.377435], 'spices':[0.181464]})
-
-first_location_prob_list = int(first_location_prob['dairy']*100)*'d'+int(first_location_prob['drinks']*100)*'r'+int(first_location_prob['fruit']*100)*'f'+int(first_location_prob['spices']*100)*'s'
 
 def set_loc(move):
     ''''
@@ -122,3 +118,8 @@ def full_simullation(locations):
 
         elif co.array_in_list(destination_coord,co.checkouts):
             m.to_checkout(start_coord, [0, 0])
+
+locations = simulated_list()
+
+full_simullation(locations)
+full_simullation(simulated_list())
