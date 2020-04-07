@@ -19,3 +19,5 @@ p2 = multiprocessing.Process(target=r_2)
 p3 = multiprocessing.Process(target=r_3)
 
 p1.start()
+p2.start()
+p3.start()
