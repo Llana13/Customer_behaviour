@@ -119,7 +119,19 @@ def full_simullation(locations):
         elif co.array_in_list(destination_coord,co.checkouts):
             m.to_checkout(start_coord, [0, 0])
 
-locations = simulated_list()
+def ask_user():
+    '''
+    Prompt the user for a desired number of customer simulations
+    '''
+    while True:
+        try:
+            user_request = input('How many customers do you want to simulate? ')
+            user_request = int(user_request)
+            break
+        except:
+            print(user_request,'is not a valid number, please enter a number')
+    return user_request
 
-full_simullation(locations)
-full_simullation(simulated_list())
+
+for customers in range(ask_user()):
+    full_simullation(simulated_list())

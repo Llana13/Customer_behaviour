@@ -25,7 +25,7 @@ class Supermarket:
         self.frame = self.background.copy()
         for customer in self.customers:
             self.frame[customer.y:customer.y+57, customer.x:customer.x+57] = customer.image
-
+        
     def render(self):
         '''
         Show the background
@@ -65,30 +65,6 @@ class Customer:
         else:
             self.counter += 1
             return self.counter -1
-
-
-        fruit_coord = coordinates.fruit_coord
-        fruit_up_coord = coordinates.fruit_up_coord
-        fruit_down_coord = coordinates.fruit_down_coord
-        fruit_check_up_coord = coordinates.fruit_check_up_coord
-        fruit_check_coord = coordinates.fruit_check_coord
-
-        spices_coord = coordinates.spices_coord
-        spices_up_coord = coordinates.spices_up_coord
-        spices_down_coord = coordinates.spices_down_coord
-        spices_check_up_coord = coordinates.spices_check_up_coord
-        spices_check_coord = coordinates.spices_check_coord
-
-        dairy_coord = coordinates.dairy_coord
-        dairy_up_coord = coordinates.dairy_up_coord
-        dairy_down_coord = coordinates.dairy_down_coord
-        dairy_check_up_coord = coordinates.dairy_check_up_coord
-        dairy_check_coord = coordinates.dairy_check_coord
-
-        drinks_coord = coordinates.drinks_coord
-        drinks_up_coord = coordinates.drinks_up_coord
-        drinks_check_coord = coordinates.drinks_check_coord
-
 
     def move(self):
         '''
