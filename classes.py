@@ -3,44 +3,15 @@ Supermarket, customer and location classes
 '''
 
 import cv2
-import coordinates as c
-
-class Supermarket:
-    '''
-    This class is the Supermarket background where the customers are
-    '''
-    background = cv2.imread('data/market.png')
-
-    def __init__(self, customers): # define attributes
-        '''
-        Init
-        '''
-        self.customers = customers
-        self.frame = self.background.copy()
-
-    def draw(self):
-        '''
-        Set customer over background
-        '''
-        self.frame = self.background.copy()
-        for customer in self.customers:
-            self.frame[customer.y:customer.y+57, customer.x:customer.x+57] = customer.image
-        
-    def render(self):
-        '''
-        Show the background
-        '''
-        cv2.imshow('market.png', self.frame)
 
 class Customer:
     '''
     A customer blueprint that moves in the supermarket
     '''
     image = cv2.imread('data/dot.png')
-    yx = [0, 0]
-    vv = [0, 0]
+    background = cv2.imread('data/market.png')
 
-    def __init__(self, yx, vv): # define attributes
+    def __init__(self, yx, vv):
         '''
         Init
         '''
@@ -49,6 +20,15 @@ class Customer:
         self.vy = vv[0]
         self.vx = vv[1]
         self.counter = 0
+        self.frame = self.background
+
+    def draw(self):
+        '''
+        Set customer over background
+        '''
+        cv2.imshow('Customer behavior simulation', self.frame)
+        self.frame = self.background.copy()
+        self.frame[self.y:self.y+57, self.x:self.x+57] = self.image
 
     def __iter__(self):
         '''

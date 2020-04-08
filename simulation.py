@@ -132,6 +132,5 @@ def ask_user():
             print(user_request,'is not a valid number, please enter a number')
     return user_request
 
-
 for customers in range(ask_user()):
     full_simullation(simulated_list())
