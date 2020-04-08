@@ -2,3 +2,6 @@
 #################
 pruebas.py
 multi_proc.py
+__pycache__
+
+*_test.py

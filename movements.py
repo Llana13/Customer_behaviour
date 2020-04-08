@@ -1,10 +1,6 @@
 import cv2
 from classes import Customer
 
-# background = cv2.imread('data/market.png')
-# frame = background.copy()
-# fondo = cv2.imshow('hola', frame)
-
 def move_to(customer, target_y, target_x):
 
     # up
