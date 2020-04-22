@@ -4,7 +4,13 @@ The data used correspond to fictional customers in a supermarket. Each row speci
 
 From the data I build a probability matrix that shows the probability of a random customer of going from each one of the possibles locations in the supermarket to any other.
 
-![Heatmap](data/heatmap.png)  ![Prob_matrix](data/prob_matrix.png)
+
+
+Probability Matrix         |  Heatmap
+:-------------------------:|:-------------------------:
+![](data/prob_matrix.png)  |  ![](data/heatmap.png)
+
+
 
 Using the probabilities of the matrix, I simulated customer behaviors and created a visualization that shows how is that customer moving around the supermarket.
 
