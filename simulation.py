@@ -134,4 +134,4 @@ def ask_user():
 
 for customers in range(ask_user()):
     full_simullation(simulated_list())
-    cv2.waitKey(0) 
+    
